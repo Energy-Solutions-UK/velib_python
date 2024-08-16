@@ -32,6 +32,8 @@ class MockTimerManager(object):
 		self._timestamp = start_time or time.time()
 
 	def add_timer(self, timeout, callback, *args, **kwargs):
+		if timeout == 0:
+            timeout = 1000
 		return self._add_resource(MockTimer(self._time, timeout, callback, *args, **kwargs))
 
 	def add_idle(self, callback, *args, **kwargs):
